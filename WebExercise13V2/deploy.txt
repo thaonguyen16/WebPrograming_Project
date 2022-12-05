@@ -1,0 +1,1 @@
+heroku deploy:war D:/WebExercise13V2/target/WebExercise13V2-1.0-SNAPSHOT.war --app web-course-exercise-team-13

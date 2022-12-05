@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="WebExercise13V2:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>WebExercise13V2</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="WebExercise13V2-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="WebExercise13V2:war exploded" />
+    </root>
+  </artifact>
+</component>

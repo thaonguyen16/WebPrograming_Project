@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/Chapter12/Ex1/ch12_ex1_sqlGateway">
+    <Resource name="jdbc/murach_db" auth="Container"
+        driverClassName="com.mysql.jdbc.Driver" 
+        url="jdbc:mysql://db4free.net:3306/murach_db"
+        username="thuthaocute" password="thuthaocute"
+        maxActive="100" maxIdle="30" maxWait="10000" 
+        logAbandoned="true" removeAbandoned="true" 
+        removeAbandonedTimeout="60" type="javax.sql.DataSource" />  
+</Context>
