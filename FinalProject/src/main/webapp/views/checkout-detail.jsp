@@ -4,56 +4,6 @@
 <div class="checkout-area pt-60 pb-30">
 	<div class="container">
 		<div class="row">
-			<div class="col-12">
-				<div class="coupon-accordion">
-					<!--Accordion Start-->
-					<h3>
-						Returning customer? <span id="showlogin">Click here to
-							login</span>
-					</h3>
-					<div id="checkout-login" class="coupon-content">
-						<div class="coupon-info">
-							<form action="#">
-								<p class="form-row-first">
-									<label>Username or email <span class="required">*</span></label>
-									<input type="text">
-								</p>
-								<p class="form-row-last">
-									<label>Password <span class="required">*</span></label> <input
-										type="text">
-								</p>
-								<p class="form-row">
-									<input value="Login" type="submit"> <label> <input
-										type="checkbox"> Remember me
-									</label>
-								</p>
-								<p class="lost-password">
-									<a href="#">Lost your password?</a>
-								</p>
-							</form>
-						</div>
-					</div>
-					<!--Accordion End-->
-					<!--Accordion Start-->
-					<h3>
-						Have a coupon? <span id="showcoupon">Click here to enter
-							your code</span>
-					</h3>
-					<div id="checkout_coupon" class="coupon-checkout-content">
-						<div class="coupon-info">
-							<form action="#">
-								<p class="checkout-coupon">
-									<input placeholder="Coupon code" type="text"> <input
-										value="Apply Coupon" type="submit">
-								</p>
-							</form>
-						</div>
-					</div>
-					<!--Accordion End-->
-				</div>
-			</div>
-		</div>
-		<div class="row">
 			<div class="col-lg-6 col-12">
 				<form action="<%=request.getContextPath()%>/checkout" method="post">
 					<input name="action" type="hidden" value="order" />
@@ -71,7 +21,7 @@
 							<div class="col-md-12">
 								<div class="checkout-form-list">
 									<label>Full Name <span class="required">*</span>
-									</label> <input placeholder="" type="text" name="fullname">
+									</label> <input placeholder="" type="text" name="fullname" value="${user.getFullName()}">
 								</div>
 							</div>
 							<div class="col-md-12">
@@ -89,7 +39,7 @@
 							<div class="col-md-6">
 								<div class="checkout-form-list">
 									<label>Phone <span class="required">*</span></label> <input
-										type="text" name="phone">
+										type="text" name="phone" value="${user.getPhone()}">
 								</div>
 							</div>
 						</div>

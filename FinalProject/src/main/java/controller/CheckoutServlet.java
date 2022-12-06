@@ -1,9 +1,11 @@
 package controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Account;
 import model.Bill;
 import model.Cart;
 import model.CartDB;
@@ -42,7 +45,6 @@ public class CheckoutServlet extends HttpServlet {
     public void init() {
 		this.parse = new ParseObjectToJson();
 		this.billService  = new BillServiceImpl();
-		
 	}
 
 	/**
@@ -54,42 +56,74 @@ public class CheckoutServlet extends HttpServlet {
     	
     	HttpSession session = request.getSession();
     	request.setCharacterEncoding("utf-8");
+    	session.removeAttribute("registerStatusTrue");
+		session.removeAttribute("loginStatusTrue");
     	
-		Cart cart = getCart(request,response);
-		session.setAttribute("cart", cart);
-		
-		NumberFormat formatter = new DecimalFormat("#0");
-		String totalBill = "0";
-		String subBill = "0";
+    	Account user = (Account) session.getAttribute("user");
+    	String url = "views/login.jsp";
+    	
+    	if(user != null)
+    	{
+    		Cart cart = getCart(request,response);
+    		String cart_string = getStringCart(request,response);
+    		
+    		session.setAttribute("cart", cart);
+    		
+    		NumberFormat formatter = new DecimalFormat("#0");
+    		String totalBill = "0";
+    		String subBill = "0";
+    		
+    		int checkoutStatus = 0;
 
-		if(cart.getLineItem() != null) {
-			
-			double pr = 0;
-			for (LineItem items : cart.getLineItem()) {
-				pr += Double.parseDouble(items.getTotalPrice());
-			}
-			
-			subBill = String.valueOf(formatter.format(pr));
-			totalBill = String.valueOf(formatter.format(pr+35000));
-		}
-		
-		session.setAttribute("totalBill", totalBill);
-		session.setAttribute("subBill", subBill);
-		
-		
-		request.setAttribute("title" , "Checkout Ecommerce Electric || Web Programming Final Project");
-		request.getRequestDispatcher("views/checkout.jsp").forward(request, response);
+    		try {
+    			if(cart_string.length() > 0) {
+    				
+    				double pr = 0;
+    				for (LineItem items : cart.getLineItem()) {
+    					pr += Double.parseDouble(items.getTotalPrice());
+    				}
+    				
+    				subBill = String.valueOf(formatter.format(pr));
+    				totalBill = String.valueOf(formatter.format(pr+35000));
+    				
+    				checkoutStatus = 1;
+    			}
+    		}
+    		catch(Exception e) {
+    			e.printStackTrace();
+    		}
+    		
+    		session.setAttribute("totalBill", totalBill);
+    		session.setAttribute("subBill", subBill);
+    		session.setAttribute("checkoutStatus", checkoutStatus);
+    		
+    		
+    		request.setAttribute("title" , "Checkout");
+    		url = "views/checkout.jsp";
+    	}
+    	else {
+    		request.setAttribute("message_status", "Please, login to checkout!");
+    		url = "views/login.jsp";
+    	}	
+    	request.getRequestDispatcher(url).forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String action = request.getParameter("action");
 		
-		String url = request.getContextPath() + "/checkout";
-		if(action.equals("order")) {
+		String url = "views/checkout.jsp";
+		
+		HttpSession session = request.getSession();
+		Account user = (Account) session.getAttribute("user");
+
+		int checkoutStatusTrue = 0;
+		if(action.equals("order")) 
+		{
 			String country = request.getParameter("country");
 			String fullname = request.getParameter("fullname");
 			String address = request.getParameter("address");
@@ -97,12 +131,14 @@ public class CheckoutServlet extends HttpServlet {
 			String phone = request.getParameter("phone");
 			String ordernotes = request.getParameter("ordernotes");
 			
-			Date nowDate = new Date();
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.DATE, -1);
 			
 			Cart nowcart = getCart(request,response);
-			String billCode = "B" + nowDate.toString();
-			String user_name = "Username";
-			String date = nowDate.toString();
+			
+			String billCode = "B" + cal.getTime();
+			String date = dateFormat.format(cal.getTime());
 			
 			Bill newBill = new Bill();
 			newBill.setAddress(address);
@@ -114,9 +150,17 @@ public class CheckoutServlet extends HttpServlet {
 			newBill.setFullName(fullname);
 			newBill.setOrderNotes(ordernotes);
 			newBill.setPhone(phone);
-			newBill.setUser_name(user_name);
+			newBill.setUser_name(user.getUsername());
+			newBill.setStatus("Checking");
+			
+			double pr = 0;
+			int number = 0;
 			
 			for(LineItem line : nowcart.getLineItem()) {
+				
+				pr += Double.parseDouble(line.getTotalPrice());
+				number ++;
+				
 				this.billService.insertLineItem(line);
 				
 				CartDB newCartDB = new CartDB();
@@ -126,12 +170,31 @@ public class CheckoutServlet extends HttpServlet {
 				this.billService.insertCart(newCartDB);
 			}
 			
+			newBill.setAllBill(pr);
+			newBill.setQuantity(number);
+			
 			this.billService.insert(newBill);
 			deleteCookies(request,response);
+			deleteCart(request,response);
 			
-			url = request.getContextPath() + "/home";
+			url = "views/checkout-status.jsp";
+			
+			checkoutStatusTrue = 1;
+			
+			session.removeAttribute("cart");
 		}
+		
+		request.setAttribute("checkoutStatusTrue", checkoutStatusTrue);
+		request.setAttribute("title", "Checkout Status");
 		request.getRequestDispatcher(url).forward(request, response);
+	}
+	
+	private void deleteCart(HttpServletRequest request, HttpServletResponse response) {
+			
+		Cookie c = new Cookie("cart", "");
+		c.setMaxAge(60 * 60 * 24 * 365 * 3); // set age to 2 years
+		c.setPath("/");
+		response.addCookie(c);
 	}
 
 	private Cart getCart(HttpServletRequest request, HttpServletResponse response) {
@@ -148,7 +211,15 @@ public class CheckoutServlet extends HttpServlet {
 		//System.out.println("Cart: ");
 		//System.out.println(newcart.getLineItem().size());
 		
-		return newcart;
+		return newcart; 
+	}
+	
+	private String getStringCart(HttpServletRequest request, HttpServletResponse response) {
+
+		Cookie[] cart = request.getCookies();
+		String line = CookieUtil.getCookieValue(cart, "cart");
+		System.out.println("Line:" + line.length());
+		return line;
 	}
 	
 	private void deleteCookies(HttpServletRequest request, HttpServletResponse response) {

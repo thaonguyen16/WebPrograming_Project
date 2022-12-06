@@ -1,21 +1,13 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "bill")
-public class Bill implements Serializable {
+public class BillList implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
 	
     private String BillCode;
@@ -33,6 +25,8 @@ public class Bill implements Serializable {
     private double AllBill;
     private int Quantity;
     private String Status;
+    
+    private List<LineItem> list_lineItem;
     
 	public int getID() {
 		return ID;
@@ -117,6 +111,12 @@ public class Bill implements Serializable {
 	}
 	public void setStatus(String status) {
 		Status = status;
+	}
+	public List<LineItem> getList_lineItem() {
+		return list_lineItem;
+	}
+	public void setList_lineItem(List<LineItem> list_lineItem) {
+		this.list_lineItem = list_lineItem;
 	}
 }
 

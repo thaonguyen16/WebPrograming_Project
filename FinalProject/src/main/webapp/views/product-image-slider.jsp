@@ -44,6 +44,7 @@
 								<input type="hidden" name="productName" value="${product_detail.getProductName()}"/>
 								<input type="hidden" name="productImg" value="${product_detail.getImageURL()}"/>
 								<input type="hidden" name="price" value="${product_detail.getPriceCurrent()}"/>
+								<input type="hidden" name="categoryCode" value="${product_detail.getCategoryCode()}"/>
 								
 								<div class="quantity">
 									<label>Quantity</label>

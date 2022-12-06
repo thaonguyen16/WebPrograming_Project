@@ -65,5 +65,11 @@ public class AccountServiceImpl implements AccountService {
     public int check_mail(String mail) {
         return dao.check_mail(mail);
     }
+
+	@Override
+	public Account getByEmail(String email) {
+		// TODO Auto-generated method stub
+		return dao.getByEmail(email);
+	}
 }
 

@@ -20,11 +20,8 @@ public class ParseObjectToJson {
 		
 		
 		Gson json = new Gson();
-
 		Cart newcart = json.fromJson(cart, Cart.class);
-		
-		System.out.println(newcart.getLineItem().size());
-	
+		//System.out.println(newcart.getLineItem().size());
 		return newcart;
 	}
 }

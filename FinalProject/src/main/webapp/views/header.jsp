@@ -8,9 +8,8 @@
 				<!-- Begin Header Logo Area -->
 				<div class="col-lg-3">
 					<div class="logo pb-sm-30 pb-xs-30">
-						<a href="${pageContext.request.contextPath}/Home"> <img
-							src="<%=request.getContextPath()%>/assets/images/logo.png"
-							alt="logo" width="200" height="100">
+						<a href="${pageContext.request.contextPath}/home"> 
+						<img src="<%=request.getContextPath()%>/assets/images/logo.png" alt="logo" width="200" height="100">
 						</a>
 					</div>
 				</div>
@@ -38,7 +37,7 @@
 									class="fa-solid fa-cart-shopping"></i>
 							</a></li>
 
-							<li class="hm-wishlist"><a href="#"> <i
+							<li class="hm-wishlist"><a href="<%=request.getContextPath()%>/login"> <i
 									class="fa-solid fa-user"></i>
 							</a></li>
 						</ul>
@@ -60,8 +59,7 @@
 					<div class="hb-menu">
 						<nav>
 							<ul>
-								<li><a href="<%=request.getContextPath()%>/">Home</a>
-								</li>
+								<li><a href="<%=request.getContextPath()%>/">Home</a></li>
 								<li class="megamenu-holder"><a href="#">Blog</a>
 								</li>
 								<li class="dropdown-holder"><a href="<%=request.getContextPath()%>/catalog">Product</a>
@@ -81,54 +79,25 @@
 														</c:if>
 													</c:forEach>
 												</ul></li>
-
 										</c:forEach>
-									</ul></li>
-
-								<li class="megamenu-static-holder"><a href="#">Guide</a>
-									<ul class="megamenu hb-megamenu">
-										<li><a href="#">Blog Layouts</a>
-											<ul>
-												<li><a href="#">Blog 2 Column</a></li>
-												<li><a href="#">Blog 3 Column</a></li>
-												<li><a href="#">Grid Left Sidebar</a></li>
-												<li><a href="#">Grid Right Sidebar</a></li>
-												<li><a href="#">Blog List</a></li>
-												<li><a href="#">List Left Sidebar</a></li>
-												<li><a href="#">List Right Sidebar</a></li>
-											</ul></li>
-										<li><a href="#">Blog Details Pages</a>
-											<ul>
-												<li><a href="#">Left Sidebar</a></li>
-												<li><a href="#">Right Sidebar</a></li>
-												<li><a href="#">Blog Audio Format</a></li>
-												<li><a href="#">Blog Video Format</a></li>
-												<li><a href="#">Blog Gallery Format</a></li>
-											</ul></li>
-										<li><a href="#">Other Pages</a>
-											<ul>
-												<li><a
-													href="${pageContext.request.contextPath}/Login_Register">My
-														Account</a></li>
-												<li><a href="/Checkout">Checkout</a></li>
-												<li><a href="#">Compare</a></li>
-												<li><a href="#">Wishlist</a></li>
-												<li><a href="#">Shopping Cart</a></li>
-											</ul></li>
-										<li><a href="#">Other Pages 2</a>
-											<ul>
-												<li><a
-													href="${pageContext.request.contextPath}/Contact">Contact</a></li>
-												<li><a
-													href="${pageContext.request.contextPath}/About_Us">About
-														Us</a></li>
-												<li><a href="/FAQ">FAQ</a></li>
-												<li><a href="/404">404 Error</a></li>
-											</ul></li>
-									</ul></li>
-								<li><a href="${pageContext.request.contextPath}/About_Us">About
-										Us</a></li>
-								<li><a href="${pageContext.request.contextPath}/Contact">Contact</a></li>
+									</ul>
+								</li>
+								
+								<li><a href="<%=request.getContextPath()%>/bill">Bill</a></li>
+								<li><a href="<%=request.getContextPath()%>/about-us">About Us</a></li>
+								<li><a href="<%=request.getContextPath()%>/Contact">Contact</a></li>
+								<li class="dropdown-holder"><a href="#">Account</a>
+									<ul class="hb-dropdown">
+										<li class="sub-dropdown-holder"><a href="<%=request.getContextPath()%>/login">Login</a>
+										</li>
+										<li class="sub-dropdown-holder"><a href="<%=request.getContextPath()%>/register">Register</a>
+										</li>
+										<c:if test="${user != null }">
+											<li class="sub-dropdown-holder"><a href="<%=request.getContextPath()%>/profile">Profile</a>
+											</li>
+										</c:if>
+									</ul>
+								</li>
 							</ul>
 						</nav>
 					</div>

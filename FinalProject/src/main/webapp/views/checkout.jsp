@@ -10,9 +10,13 @@
 	<div class="body-wrapper">
 
 		<jsp:include page="header.jsp" />
-		<jsp:include page="banner.jsp" />
 		
-		<jsp:include page="checkout-detail.jsp"/>
+		<c:if test="${checkoutStatus == 1 }">
+			<jsp:include page="checkout-detail.jsp"/>
+		</c:if>
+		<c:if test="${checkoutStatus == 0 }">
+			<h1>Cart Empty</h1>
+		</c:if>
 		
 		<jsp:include page="footer.jsp" />
 		<jsp:include page="home-modal.jsp" />

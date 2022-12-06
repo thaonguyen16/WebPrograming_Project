@@ -195,6 +195,30 @@ public class AccountDaoImpl implements AccountDao
             return 0;
     }
 
+	@Override
+	public Account getByEmail(String email) {
+		
+		Account result = new Account();
+        try(Session session = HibernateUtil.getSessionFactory().openSession())
+        {
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Account> query = builder.createQuery(Account.class);
+            Root<Account> ac = query.from(Account.class);
+
+            query.select(ac).where(builder.like(ac.get("Phone"),email));
+
+            Query<Account> q = session.createQuery(query);
+            
+            if(q.getResultList().size() > 0)
+            {
+            	result = q.getResultList().get(0);
+            }
+        }
+        
+        return result;
+
+	}
+
 
 }
 

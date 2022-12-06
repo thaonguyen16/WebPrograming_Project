@@ -48,6 +48,10 @@ public class ProductServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession();
+		session.removeAttribute("registerStatusTrue");
+		session.removeAttribute("loginStatusTrue");
 	}
 
 	/**
@@ -58,6 +62,9 @@ public class ProductServlet extends HttpServlet {
 		// TODO Auto-generated method stub
     	request.setCharacterEncoding("utf-8");
     	HttpSession session = request.getSession();
+    	
+    	session.removeAttribute("registerStatusTrue");
+		session.removeAttribute("loginStatusTrue");
     	
     	String action = request.getParameter("action");
     	String productID = request.getParameter("productCode");

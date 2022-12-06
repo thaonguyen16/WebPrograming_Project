@@ -60,12 +60,12 @@
             <div class="col-lg-4 col-md-4 text-center pt-sm-30 pt-xs-30">
                 <div class="li-banner">
                     <a href="#">
-                        <img src="https://th.bing.com/th/id/OIP.z88RKgYCX2N_-F0SSdJmIQHaE7?pid=ImgDet&rs=1" alt="">
+                        <img src="https://1.bp.blogspot.com/-Y67glP4JOcQ/Xoms9vVrt9I/AAAAAAAAb5E/weEiY7CElFAuM33Et4wHRXEkXJ-hTyhwQCLcBGAsYHQ/s1600/Asus%2BROG%2BZephyrus%2BDuo%2B15%2BDual-Screen%2BLaptop_2.jpg" alt="">
                     </a>
                 </div>
                 <div class="li-banner mt-15 mt-md-30 mt-xs-25 mb-xs-5">
                     <a href="#">
-                        <img src="https://cpb-us-e1.wpmucdn.com/sites.psu.edu/dist/8/2162/files/2013/04/1.png" alt="">
+                        <img src="https://th.bing.com/th/id/OIP.LIZa_5Y3MhvUg8laXM11_AHaEQ?pid=ImgDet&w=1520&h=874&rs=1" alt="">
                     </a>
                 </div>
             </div>

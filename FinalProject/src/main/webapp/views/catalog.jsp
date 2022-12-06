@@ -10,7 +10,6 @@
 	<div class="body-wrapper">
 
 		<jsp:include page="header.jsp" />
-		<jsp:include page="banner.jsp" />
 		
 		<jsp:include page="catalog-product-list.jsp"/>
 		

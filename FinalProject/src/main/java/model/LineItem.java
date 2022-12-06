@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "lineitem")
+@Table(name = "line_item")
 public class LineItem implements Serializable
 {
     /**
@@ -16,6 +16,7 @@ public class LineItem implements Serializable
     private String ID;
 
     private int ProductCode;
+    private String CategoryCode;
     private String ProductName;
     private String ProductImg;
     private String Price;
@@ -63,6 +64,12 @@ public class LineItem implements Serializable
 	}
 	public void setTotalPrice(String totalPrice) {
 		TotalPrice = totalPrice;
+	}
+	public String getCategoryCode() {
+		return CategoryCode;
+	}
+	public void setCategoryCode(String categoryCode) {
+		CategoryCode = categoryCode;
 	}
     
     

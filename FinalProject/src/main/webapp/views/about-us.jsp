@@ -4,25 +4,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="head.jsp" />
+
 <body>
-<!-- Begin Body Wrapper -->
 <div class="body-wrapper">
-    <!-- Begin Header Area -->
     <jsp:include page="header.jsp" />
-    <!-- Header Area End Here -->
-    <!-- Begin Li's Breadcrumb Area -->
-    <div class="breadcrumb-area">
-        <div class="container">
-            <div class="breadcrumb-content">
-                <ul>
-                    <li><a href="/Home">Home</a></li>
-                    <li class="active">About Us</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <!-- Li's Breadcrumb Area End Here -->
-    <!-- about wrapper start -->
+ 
     <div class="about-us-wrapper pt-60 pb-40">
         <div class="container">
             <div class="row">
@@ -44,7 +30,7 @@
                 <!-- About Image Start -->
                 <div class="col-lg-5 col-md-10">
                     <div class="about-image-wrap">
-                        <img class="img-full" src="<%=request.getContextPath()%>/assets/images/product/large-size/13.jpg" alt="About Us" />
+                        <img class="img-full" src="https://th.bing.com/th/id/R.0812c97bfad733a5ef4e8c0e175dc771?rik=MMeEprobU35MjQ&pid=ImgRaw&r=0" alt="About Us"/>
                     </div>
                 </div>
                 <!-- About Image End -->
@@ -144,17 +130,17 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="team-member mb-60 mb-sm-30 mb-xs-30">
                         <div class="team-thumb">
-                            <img src="<%=request.getContextPath()%>/assets/images/team/thiennhan.jpg" alt="Our Team Member">
+                            <img src="<%=request.getContextPath()%>/assets/images/team/thiennhan.jpg" alt="Our Team Member" width="200px" height="300px">
                         </div>
                         <div class="team-content text-center">
                             <h3>Nguyễn Hữu Thiện Nhân</h3>
                             <p>Java Developer</p>
                             <a href="#">19110415@student.hcmute.edu.vn</a>
                             <div class="team-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
                             </div>
                         </div>
                     </div>
@@ -162,17 +148,17 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="team-member mb-60 mb-sm-30 mb-xs-30">
                         <div class="team-thumb">
-                            <img src="<%=request.getContextPath()%>/assets/images/team/2.jpg" alt="Our Team Member">
+                            <img src="<%=request.getContextPath()%>/assets/images/team/2.jpg" alt="Our Team Member" width="200px" height="300px">
                         </div>
                         <div class="team-content text-center">
                             <h3>Nguyễn Thị Thu Thảo</h3>
                             <p>Java Developer</p>
                             <a href="#">19110460@student.hcmute.edu.vn</a>
                             <div class="team-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
                             </div>
                         </div>
                     </div>
@@ -180,17 +166,17 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="team-member mb-30 mb-sm-60">
                         <div class="team-thumb">
-                            <img src="<%=request.getContextPath()%>/assets/images/team/3.jpg" alt="Our Team Member">
+                            <img src="<%=request.getContextPath()%>/assets/images/team/3.jpg" alt="Our Team Member" width="200px" height="300px">
                         </div>
                         <div class="team-content text-center">
                             <h3>Lê Nguyễn Thế Linh</h3>
                             <p>Java Developer</p>
                             <a href="#">19110389@student.hcmute.edu.vn</a>
-                            <div class="team-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                           <div class="team-social">
+                                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
                             </div>
                         </div>
                     </div>
@@ -198,17 +184,17 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="team-member mb-30 mb-sm-60 mb-xs-60">
                         <div class="team-thumb">
-                            <img src="<%=request.getContextPath()%>/assets/images/team/4.jpg" alt="Our Team Member">
+                            <img src="<%=request.getContextPath()%>/assets/images/team/4.jpg" alt="Our Team Member" width="200px" height="300px">
                         </div>
                         <div class="team-content text-center">
                             <h3>Phan Văn Thành</h3>
                             <p>Java Developer</p>
                             <a href="#">20133088@student.hcmute.edu.vn</a>
                             <div class="team-social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
+                                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                                <a href="#"><i class="fa-brands fa-google-plus-g"></i></a>
                             </div>
                         </div>
                     </div>
@@ -216,10 +202,8 @@
             </div>
         </div>
     </div>
-    <!-- team area wrapper end -->
-    <!-- Begin Footer Area -->
+
     <jsp:include page="footer.jsp" />
-    <!-- Footer Area End Here -->
 </div>
 <jsp:include page="script.jsp" />
 </body>

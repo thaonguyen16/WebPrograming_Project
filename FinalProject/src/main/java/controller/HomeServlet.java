@@ -11,13 +11,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.Account;
 import model.Brand;
 import model.Cart;
 import model.Category;
 import model.Product;
+import service.AccountService;
 import service.BrandService;
 import service.CategoryService;
 import service.ProductService;
+import service.Implement.AccountServiceImpl;
 import service.Implement.BrandServiceImpl;
 import service.Implement.CategoryServiceImpl;
 import service.Implement.ProductServiceImpl;
@@ -33,10 +36,12 @@ public class HomeServlet extends HttpServlet {
 	private List<Category> list_category;
 	private List<Brand> list_brand;
 	private List<Product> list_product;
+	private Account user;
 	
 	private CategoryService categoryService;
 	private BrandService brandService;
 	private ProductService productService;
+	private AccountService accountService;
 	
 	private ParseObjectToJson parse;
     /**
@@ -59,6 +64,8 @@ public class HomeServlet extends HttpServlet {
     	this.productService = new ProductServiceImpl();
     	this.list_product = this.productService.get_all();
     	
+    	this.accountService = new AccountServiceImpl();
+    	
     	this.parse = new ParseObjectToJson();
     }
 
@@ -71,10 +78,29 @@ public class HomeServlet extends HttpServlet {
     	int number_cart = 0;
     	
     	Cart cart = getCart(request,response);
+    	String line = getStringCart(request,response);
+    	String user_phone = getUser(request,response);
     	
-    	if(cart.getLineItem() != null)
+    	
+    	try {
+    		if(line.length() > 0)
+        	{
+        		number_cart = cart.getLineItem().size();
+        	}
+    	}
+    	catch(Exception e)
     	{
-    		number_cart = cart.getLineItem().size();
+    		e.printStackTrace();
+    	};
+    	
+    	if(user_phone.length() > 0) {
+    		try {
+        		this.user = this.accountService.getByEmail(user_phone);
+        	}
+        	catch(Exception e) {
+        		e.printStackTrace();
+        	}
+    		session.setAttribute("user", this.user);
     	}
     	
     	session.setAttribute("list_category" , this.list_category);
@@ -84,7 +110,6 @@ public class HomeServlet extends HttpServlet {
     	
         request.setAttribute("title" , "Home Ecommerce Electric || Web Programming Final Project");
         request.getRequestDispatcher("views/home.jsp").forward(request,response);
-       
     }
 
     
@@ -100,6 +125,14 @@ public class HomeServlet extends HttpServlet {
     	return list_brand;
     }
     
+    private String getStringCart(HttpServletRequest request, HttpServletResponse response) {
+
+		Cookie[] cart = request.getCookies();
+		String line = CookieUtil.getCookieValue(cart, "cart");
+		System.out.println("Line:" + line.length());
+		return line;
+	}
+    
     private Cart getCart(HttpServletRequest request, HttpServletResponse response) {
 
 		Cart newcart = new Cart();
@@ -110,8 +143,19 @@ public class HomeServlet extends HttpServlet {
 		if(line.length() > 0)
 		{
 			newcart = this.parse.StringToOject(line);
-			System.out.print(newcart);
+			//System.out.print(newcart);
 		}
 		return newcart;
 	}
+    
+    private String getUser(HttpServletRequest request, HttpServletResponse response) {
+
+
+		Cookie[] cookies = request.getCookies();
+		String user_phone = CookieUtil.getCookieValue(cookies, "user_phone");
+		
+		return user_phone;
+	}
+    
+    
 }

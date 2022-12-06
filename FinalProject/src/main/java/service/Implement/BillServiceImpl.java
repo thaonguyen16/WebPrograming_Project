@@ -1,5 +1,7 @@
 package service.Implement;
 
+import java.util.List;
+
 import dao.BillDao;
 import dao.Implement.BIllDaoImpl;
 import model.Bill;
@@ -35,6 +37,24 @@ public class BillServiceImpl implements BillService {
 	public void insertCart(CartDB cart) {
 		dao.insertCart(cart);
 		
+	}
+
+	@Override
+	public List<Bill> getAllBillbyUser(String user_phone) {
+		// TODO Auto-generated method stub
+		return dao.getAllBillbyUser(user_phone);
+	}
+
+	@Override
+	public List<CartDB> getAllCartByBill(String cart_code) {
+		// TODO Auto-generated method stub
+		return dao.getAllCartByBill(cart_code);
+	}
+
+	@Override
+	public LineItem getAllLineItemByCart(String cart_code) {
+		// TODO Auto-generated method stub
+		return dao.getAllLineItemByCart(cart_code);
 	}
 	
 }

@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import model.Bill;
 import model.Cart;
 import model.CartDB;
@@ -11,4 +13,8 @@ public interface BillService {
     void delete(String BillCode);
     void insertLineItem(LineItem lineitem);
     void insertCart(CartDB cart);
+    
+    List<Bill> getAllBillbyUser(String user_phone);
+    List<CartDB> getAllCartByBill(String cart_code);
+    LineItem getAllLineItemByCart(String cart_code);
 }

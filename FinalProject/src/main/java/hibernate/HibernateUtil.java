@@ -3,7 +3,9 @@ package hibernate;
 import model.Account;
 import model.Bill;
 import model.Brand;
+import model.CartDB;
 import model.Category;
+import model.LineItem;
 import model.Product;
 import model.ProductDetail;
 import model.ProductImageDetail;
@@ -43,6 +45,8 @@ public class HibernateUtil
                 configuration.addAnnotatedClass(Brand.class);
                 configuration.addAnnotatedClass(ProductImageDetail.class);
                 configuration.addAnnotatedClass(ProductDetail.class);
+                configuration.addAnnotatedClass(CartDB.class);
+                configuration.addAnnotatedClass(LineItem.class);
                 configuration.addAnnotatedClass(Bill.class);
                 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()

@@ -53,25 +53,38 @@ public class CartServlet extends HttpServlet {
     	request.setCharacterEncoding("utf-8");
     	
 		Cart cart = getCart(request,response);
+		String line = getStringCart(request,response);
+		
 		session.setAttribute("cart", cart);
+		session.removeAttribute("registerStatusTrue");
+		session.removeAttribute("loginStatusTrue");
 		
 		NumberFormat formatter = new DecimalFormat("#0");
 		String totalBill = "0";
 		String subBill = "0";
+		
+		int cartTrue = 0;
 
-		if(cart.getLineItem() != null) {
-			
-			double pr = 0;
-			for (LineItem items : cart.getLineItem()) {
-				pr += Double.parseDouble(items.getTotalPrice());
+		try {
+			if(line.length() > 0) {
+				
+				cartTrue = 1;
+				double pr = 0;
+				for (LineItem items : cart.getLineItem()) {
+					pr += Double.parseDouble(items.getTotalPrice());
+				}
+				
+				subBill = String.valueOf(formatter.format(pr));
+				totalBill = String.valueOf(formatter.format(pr+35000));
 			}
-			
-			subBill = String.valueOf(formatter.format(pr));
-			totalBill = String.valueOf(formatter.format(pr+35000));
+		}
+		catch(Exception e) {
+			e.printStackTrace();
 		}
 		
 		session.setAttribute("totalBill", totalBill);
 		session.setAttribute("subBill", subBill);
+		session.setAttribute("cartTrue", cartTrue);
 		
 		
 		request.setAttribute("title" , "Cart Ecommerce Electric || Web Programming Final Project");
@@ -89,12 +102,16 @@ public class CartServlet extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
+		session.removeAttribute("registerStatusTrue");
+		session.removeAttribute("loginStatusTrue");
 		
 		String action = request.getParameter("action");
-	
+		String addCartStatus = "false";
+		
+		String url = "/home";
 
 		if (action.equals("addCart")) {
-
+			
 			Date date = new Date();
 
 			String productCode = request.getParameter("productCode");
@@ -102,6 +119,7 @@ public class CartServlet extends HttpServlet {
 			String productImg = request.getParameter("productImg");
 			String quantity = request.getParameter("quantity");
 			String price = request.getParameter("price");
+			String category = request.getParameter("categoryCode");
 
 			double pr = Double.parseDouble(price);
 			NumberFormat formatter = new DecimalFormat("#0");
@@ -116,13 +134,15 @@ public class CartServlet extends HttpServlet {
 			items.setProductImg(productImg);
 			items.setProductName(productName);
 			items.setQuantity(Integer.parseInt(quantity));
+			items.setCategoryCode(category);
 			
 			List<LineItem> listItem = new ArrayList<>();
 			listItem.add(items);
 			
 			Cart cart = getCart(request,response);
+			String line = getStringCart(request,response);
 
-			if(cart.getLineItem() != null)
+			if(line.length() > 0)
 			{
 				List<LineItem> list = cart.getLineItem();
 				list.add(items);
@@ -137,10 +157,24 @@ public class CartServlet extends HttpServlet {
 				newCart.setCartID("C" + date.toString());
 				
 				addCart(request,response,newCart);
+				
 			}
+			
+			addCartStatus = "true"; 
+			
+			//session.removeAttribute("cart");
 		}
 		
-		response.sendRedirect(request.getContextPath() + "/");
+		request.setAttribute("addCartStatus", addCartStatus);
+		request.getRequestDispatcher(url).forward(request, response);
+	}
+	
+	private String getStringCart(HttpServletRequest request, HttpServletResponse response) {
+
+		Cookie[] cart = request.getCookies();
+		String line = CookieUtil.getCookieValue(cart, "cart");
+		System.out.println("Line:" + line.length());
+		return line;
 	}
 
 	private Cart getCart(HttpServletRequest request, HttpServletResponse response) {
@@ -164,7 +198,7 @@ public class CartServlet extends HttpServlet {
 		
 		Cookie c = new Cookie("cart", this.parse.ObjectToString(cart));
 		c.setMaxAge(60 * 60 * 24 * 365 * 3); // set age to 2 years
-		
+		c.setPath("/");
 		response.addCookie(c);
 	}
 }

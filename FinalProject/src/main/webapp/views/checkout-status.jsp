@@ -11,22 +11,19 @@
 
 		<jsp:include page="header.jsp" />
 		
-		<c:if test="${cartTrue == 1 }">
-			<jsp:include page="cart-detail.jsp"/>
-		</c:if>
-		<c:if test="${cartTrue == 0 }">
+		<c:if test="${checkoutStatusTrue == 1}">
 			<div class="error404-area pt-30 pb-60">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="error-wrapper text-center ptb-50 pt-xs-20">
                                 <div class="error-text">
-                                    <img src="https://th.bing.com/th/id/OIP.So1-JYRCHH475Vs4wpek9QHaHY?pid=ImgDet&rs=1" alt="Cart" width="200px" height="200px">
-                                    <h2>Cart Empty</h2>
-                                    <p>Your cart is empty. Please to product page to add product to cart and checkout.</p>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/7518/7518748.png" alt="Cart" width="200px" height="200px">
+                                    <h2>Your Checkout Successfully</h2>
+                                    <p>Your order is checking by shop. Please, to bill page to watch detail and update status of your order</p>
                                 </div>
                                 <div class="error-button">
-                                    <a href="<%= request.getContextPath() %>/home">Back to home page</a>
+                                    <a href="<%= request.getContextPath() %>/bill">Reach to bill page</a>
                                 </div>
                             </div>
                         </div>
@@ -34,9 +31,10 @@
                 </div>
             </div>
 		</c:if>
-		
+		<c:if test="${checkoutStatusFalse == 0 }">
+			<jsp:include page="404.jsp" />
+		</c:if>
 		<jsp:include page="footer.jsp" />
-		<jsp:include page="home-modal.jsp" />
 	</div>
 	<jsp:include page="script.jsp" />
 </body>

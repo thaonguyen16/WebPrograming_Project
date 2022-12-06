@@ -9,21 +9,27 @@
 				<!-- Begin Li's Section Area -->
 				<div class="col-lg-12">
 					<div class="li-section-title">
-						<h2><span><c:out value="${category.getCategoryName()}"/></span></h2>
+						<h2>
+							<span><c:out value="${category.getCategoryName()}" /></span>
+						</h2>
 					</div>
 					<div class="row">
 						<div class="product-active owl-carousel">
 							<c:forEach var="product" items="${list_product}">
-								<c:if test="${category.getCategoryCode() == product.getCategoryCode()}">
+								<c:if
+									test="${category.getCategoryCode() == product.getCategoryCode()}">
 									<div class="col-lg-12">
 										<!-- single-product-wrap start -->
 										<div class="single-product-wrap">
 											<div class="product-image">
-												<form action="<%=request.getContextPath()%>/product" method="post">
-													<input type="hidden" name="action" value="showProduct"/>
-													<input type="hidden" name="productCode" value="${product.getID()}"/>
-													<button type="submit"> 
-														<img src="${product.getImageURL()}" alt="${product.getProductName()}">
+												<form action="<%=request.getContextPath()%>/product"
+													method="post">
+													<input type="hidden" name="action" value="showProduct" />
+													<input type="hidden" name="productCode"
+														value="${product.getID()}" />
+													<button type="submit">
+														<img src="${product.getImageURL()}"
+															alt="${product.getProductName()}">
 													</button>
 												</form>
 											</div>
@@ -33,39 +39,42 @@
 														<a class="product_name" href="#">${product.getProductName()}</a>
 													</h4>
 													<div class="price-box">
-													<span
-															class="old-price">${product.getPriceRoot()}</span> 
-														<span class="new-price new-price-2">${product.getPriceCurrent()}</span> 
-														
-															<span
-															class="discount-percentage">-22%</span>
+														<span class="old-price">${product.getPriceRoot()}</span> <span
+															class="new-price new-price-2">${product.getPriceCurrent()}</span>
+
+														<span class="discount-percentage">-22%</span>
 													</div>
 												</div>
 												<div class="add-actions">
 													<ul class="add-actions-link">
 														<li class="add-cart active">
-															
-															<form action="<%=request.getContextPath()%>/cart" method="post">
-																<input type="hidden" type="text" name="action" value="addCart"/>
-																<input type="hidden" type="text" name="productCode" value="${product.getID()}"/>
-																<input type="hidden" type="text" name="productName" value="${product.getProductName()}"/>
-																<input type="hidden" type="text" name="productImg" value="${product.getImageURL()}"/>
-																<input type="hidden" type="text" name="quantity" value="1"/>
-																<input type="hidden" type="text" name="price" value="${product.getPriceCurrent()}"/>
-																
-																<input type="submit" style="background:transparent;outline:none;border:none" value="Add to cart" />
+
+															<form action="<%=request.getContextPath()%>/cart"
+																method="post">
+																<input type="hidden" type="text" name="action"
+																	value="addCart" /> <input type="hidden" type="text"
+																	name="productCode" value="${product.getID()}" /> <input
+																	type="hidden" type="text" name="productName"
+																	value="${product.getProductName()}" /> <input
+																	type="hidden" type="text" name="productImg"
+																	value="${product.getImageURL()}" /> <input
+																	type="hidden" type="text" name="quantity" value="1" />
+																<input type="hidden" type="text" name="price"
+																	value="${product.getPriceCurrent()}" /> <input
+																	type="hidden" name="categoryCode"
+																	value="${product_detail.getCategoryCode()}" /> <input
+																	type="submit"
+																	style="background: transparent; outline: none; border: none"
+																	value="Add to cart" />
 															</form>
 														</li>
-														<li>
-															<a class="links-details" href="#">
-																<i class="fa-solid fa-heart"></i>
-															</a>
-														</li>
-														<li>
-															<a class="quick-view" data-toggle="modal" data-target="#exampleModalCenter" href="#">
-																<i class="fa fa-eye"></i>
-															</a>
-														</li>
+														<li><a class="links-details" href="#"> <i
+																class="fa-solid fa-heart"></i>
+														</a></li>
+														<li><a class="quick-view" data-toggle="modal"
+															data-target="#exampleModalCenter" href="#"> <i
+																class="fa fa-eye"></i>
+														</a></li>
 													</ul>
 												</div>
 											</div>
@@ -82,3 +91,15 @@
 		</div>
 	</section>
 </c:forEach>
+
+<div class="li-static-home" style="margin-bottom: 50px;">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="li-static-home-image">
+					<img src="https://th.bing.com/th/id/R.08bef4b7c5172040254c27ecfff66a4c?rik=oyZpf%2b02%2f%2fWF8Q&pid=ImgRaw&r=0" width="100%" height="400px"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

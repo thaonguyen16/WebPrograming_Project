@@ -11,11 +11,9 @@
 
 		<jsp:include page="header.jsp" />
 		
-		<jsp:include page="product-image-slider.jsp"/>
-		<jsp:include page="product-detail.jsp"/>
+		<jsp:include page="bill-list.jsp"/>
 		
 		<jsp:include page="footer.jsp" />
-		<jsp:include page="home-modal.jsp" />
 	</div>
 	<jsp:include page="script.jsp" />
 </body>
