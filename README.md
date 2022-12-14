@@ -28,3 +28,22 @@ https://admin-final-project-team13.herokuapp.com/
 ### Cloud Service
 * [Heroku](https://www.heroku.com/) - The platform API empowers developers to automate, extend and combine Heroku with other services
 * [db4free](https://www.db4free.net/) - db4free.net provides a testing service for the latest - sometimes even development - version of the MySQL Server
+
+### Main Function for Customer
+* Login / Register
+* View Product
+* Filter with Product
+* Save favorite product to whitelist
+* Add product to cart
+* Order Product
+* Watch status order
+* Modifier profile
+
+### Main Function for Customer
+* Login
+* View, update, add, delete Catgory
+* View, update, add, delete Product
+* View, update, add, delete Brand
+* Modifier profile
+* Add account
+* Process order
