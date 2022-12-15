@@ -8,6 +8,8 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import javax.persistence.criteria.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountDaoImpl implements AccountDao
@@ -196,27 +198,26 @@ public class AccountDaoImpl implements AccountDao
     }
 
 	@Override
-	public Account getByEmail(String email) {
+	public Account getByEmail(String phone) {
+		// TODO Auto-generated method stub
 		
-		Account result = new Account();
-        try(Session session = HibernateUtil.getSessionFactory().openSession())
+		List<Account> result = new ArrayList<>();
+		try(Session session = HibernateUtil.getSessionFactory().openSession())
         {
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Account> query = builder.createQuery(Account.class);
             Root<Account> ac = query.from(Account.class);
 
-            query.select(ac).where(builder.like(ac.get("Phone"),email));
+            query.select(ac).where(builder.like(ac.get("Phone"),phone));
 
             Query<Account> q = session.createQuery(query);
-            
-            if(q.getResultList().size() > 0)
-            {
-            	result = q.getResultList().get(0);
-            }
+            result = q.getResultList();
         }
-        
-        return result;
 
+        if(result.size() > 0)
+            return result.get(0);
+        else
+            return null;
 	}
 
 

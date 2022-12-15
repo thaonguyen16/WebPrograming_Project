@@ -26,6 +26,7 @@ import service.Implement.BillServiceImpl;
  */
 @WebServlet("/bill")
 public class BillServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
 	private BillService billService;
 	

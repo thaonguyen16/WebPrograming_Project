@@ -148,7 +148,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="team-member mb-60 mb-sm-30 mb-xs-30">
                         <div class="team-thumb">
-                            <img src="<%=request.getContextPath()%>/assets/images/team/2.jpg" alt="Our Team Member" width="200px" height="300px">
+                            <img src="<%=request.getContextPath()%>/assets/images/team/thuthao.jpg" alt="Our Team Member" width="200px" height="300px">
                         </div>
                         <div class="team-content text-center">
                             <h3>Nguyễn Thị Thu Thảo</h3>
@@ -166,7 +166,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="team-member mb-30 mb-sm-60">
                         <div class="team-thumb">
-                            <img src="<%=request.getContextPath()%>/assets/images/team/3.jpg" alt="Our Team Member" width="200px" height="300px">
+                            <img src="<%=request.getContextPath()%>/assets/images/team/thelinh.jpg" alt="Our Team Member" width="200px" height="300px">
                         </div>
                         <div class="team-content text-center">
                             <h3>Lê Nguyễn Thế Linh</h3>
@@ -184,7 +184,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="team-member mb-30 mb-sm-60 mb-xs-60">
                         <div class="team-thumb">
-                            <img src="<%=request.getContextPath()%>/assets/images/team/4.jpg" alt="Our Team Member" width="200px" height="300px">
+                            <img src="<%=request.getContextPath()%>/assets/images/team/vanthanh.jpg" alt="Our Team Member" width="200px" height="300px">
                         </div>
                         <div class="team-content text-center">
                             <h3>Phan Văn Thành</h3>

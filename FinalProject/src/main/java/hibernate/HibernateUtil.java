@@ -29,9 +29,9 @@ public class HibernateUtil
 
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/roseblack");
-                settings.put(Environment.USER, "root");
-                settings.put(Environment.PASS, "thuthao");
+                settings.put(Environment.URL, "jdbc:mysql://db4free.net:3306/roseblack");
+                settings.put(Environment.USER, "thuthaoroot");
+                settings.put(Environment.PASS, "Thuthaocute@16");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
